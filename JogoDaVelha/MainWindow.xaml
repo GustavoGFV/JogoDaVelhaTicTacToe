@@ -1,0 +1,133 @@
+﻿<Window x:Class="JogoDaVelha.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JogoDaVelha"
+        mc:Ignorable="d"
+        Height="720" Width="1080"
+        Background="Transparent"
+        ResizeMode="CanMinimize"
+        xmlns:viewModel ="clr-namespace:JogoDaVelha.MVVM.ViewModel"
+        WindowStartupLocation="CenterScreen"
+        Icon="Imgs/Logo/logo.png">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border>
+        <Border.Background>
+            <ImageBrush ImageSource="Imgs/Menu/FundoJogo.png"/>
+        </Border.Background>
+
+        <Grid x:Name="MainGrd" >
+
+            <TextBlock x:Name="TitleTxtBlock"
+                       Text="Jogo da Velha"
+                       Foreground="White"
+                       FontSize="150px"
+                       FontFamily="/Fonts/#Dancing Script"
+                       HorizontalAlignment="Left" 
+                       Margin="167,0,0,481"
+                       Panel.ZIndex="2"
+                       Visibility="Visible" Width="826"/>
+            <Border x:Name="MenuBrd" Margin="0,184,0,0" Panel.ZIndex="2" Visibility="Visible" >
+                <Grid>
+                    <Border x:Name="JogarBrd" Margin="162,27,192,289">
+                        <Button x:Name="Jogarbtn"
+                            Content="Jogar" FontSize="60"
+                                FontFamily="Fonts/#Lobster"
+                                Margin="0,42,0,24"
+                                Click="PlayBtn"
+                                HorizontalAlignment="Center" Width="547"
+                                 RenderTransformOrigin="0.5,0.5">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFB9EAFF"/>
+                                    <GradientStop Color="#FF00B4FF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </Border>
+                    <Border x:Name="ExitBrd" Margin="162,260,192,37">
+                        <Button Content="Sair" FontSize="60"
+                                FontFamily="Fonts/#Lobster"
+                                HorizontalAlignment="Center"
+                                Click="ExitBtn" Margin="0,40,0,50" Width="534" RenderTransformOrigin="0.5,0.5">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFFFE2C0"/>
+                                    <GradientStop Color="#FFA70000" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border x:Name="ChoosePopUpBrd"
+                    BorderThickness="1"
+                    BorderBrush="Black"                    
+                    Height="160" 
+                    Width="400" 
+                    Margin="340,233,334,233"
+                    Panel.ZIndex="6"
+                    CornerRadius="8"
+                    Visibility="Hidden">
+
+                <Grid Background="AntiqueWhite" 
+                      Height="160" 
+                      Width="400">
+
+                    <Label x:Name="ChoosP1Lbl" Content="Jogador 1" FontSize="20px" FontFamily="ComicSans" HorizontalContentAlignment="Center" Foreground="Black" />
+                    <Label Content="Escolha qual será seu símbolo" FontSize="18px" FontFamily="ComicSans" HorizontalContentAlignment="Center" Foreground="Black" Margin="65,22,57,108" />
+
+                    <Button x:Name="Xbtn"
+                            Content="X"  
+                            FontFamily="Fonts/#Righteous"
+                            FontSize="20px"
+                            HorizontalContentAlignment="Center" 
+                            Foreground="Black"
+                            Margin="65,72,221,41" 
+                            Background="LightSeaGreen"
+                            Click="ChooseBtn"/>
+
+                    <Button x:Name="Obtn"
+                            Content="O"
+                            FontFamily="Fonts/#Righteous"
+                            FontSize="20px"
+                            HorizontalContentAlignment="Center"
+                            Foreground="Black"
+                            Margin="229,72,57,41"
+                            Background="OrangeRed"
+                            Click="ChooseBtn"/>
+                </Grid>
+            </Border>
+
+            <ContentControl x:Name="GameContentControl"
+                Content="{Binding CurrentView}" Visibility="Hidden"/>
+        </Grid>
+
+    </Border>
+
+</Window>

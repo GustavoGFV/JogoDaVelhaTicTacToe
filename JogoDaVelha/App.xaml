@@ -1,0 +1,15 @@
+﻿<Application x:Class="JogoDaVelha.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:JogoDaVelha"
+             xmlns:viewModel ="clr-namespace:JogoDaVelha.MVVM.ViewModel"
+             xmlns:view ="clr-namespace:JogoDaVelha.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate  DataType ="{x:Type viewModel:GameViewModel}">
+                <view:GameView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
